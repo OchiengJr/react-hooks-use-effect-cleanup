@@ -4,16 +4,16 @@ function Clock() {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
-    const timerID =setInterval(() => {
-        setTime(new Date());
-      }, 1000);
+    const timerID = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
 
-    return function cleanup(){
-      clearInterval(timerID)
-    }  
+    return () => clearInterval(timerID);
   }, []);
 
-  return <div>{time.toString()}</div>;
+  const formattedTime = time.toLocaleTimeString();
+
+  return <div>{formattedTime}</div>;
 }
 
 export default Clock;
